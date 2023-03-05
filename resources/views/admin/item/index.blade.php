@@ -2,16 +2,13 @@
 
 @section('content')
 
-<h4 class="fw-bold py-3 mb-4">
-    <span class="text-muted fw-light">{{ __('language.Sales') }} / </span>
-    {{ __('language.Invoice') }}
-</h4>
-
 <div class="row">
     <div class="col-xl-12">
         <div class="card card-default">
             <div class="card-body">
-                <a href="{{ route('fatura.add') }}" type="button" class="btn btn-info btn-pill">  {{ __('language.new_invoice') }}</a>
+                <button type="button" class="btn btn-info btn-pill" data-toggle="modal" data-target="#modal_new_item">
+                    {{ __('language.new_iten') }}
+                </button>
                 <button type="button" class="btn btn-info btn-pill" data-toggle="modal" data-target="#modal_new_group">
                     {{ __('language.new_group') }}
                 </button>
@@ -23,7 +20,7 @@
     <div class="col-xl-12">
         <div class="card card-default">
             <div class="card-header">
-                <h2> {{ __('language.list_invoice') }}</h2>
+                <h2> {{ __('language.list_item') }}</h2>
             </div>
             <div class="card-body">
                 <table id="productsTable" class="table table-hover table-product" style="width:100%">
@@ -470,3 +467,131 @@
     </div>
 </div>
 @endsection
+
+
+<div class="modal fade" id="modal_new_item" tabindex="-1" role="dialog" aria-labelledby="modal_new_itemTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_new_itemTitle">Modal Title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServer01">Input with success</label>
+                            <input type="text" class="form-control border-success" id="validationServer01" placeholder="First name" required>
+                            <div class="text-success small mt-1">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServer02">Input with info</label>
+                            <input type="text" class="form-control border-info" id="validationServer02" placeholder="Last name" value="Last Name" required>
+                            <div class="text-info small mt-1">
+                                We'll never share your email with anyone else.
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServer02">Input with warning</label>
+                            <input type="text" class="form-control border-warning" id="validationServer02" placeholder="Last name" value="Last Name" required>
+                            <div class="text-warning small mt-1">
+                                Shucks, check the formatting of that and try again.
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="validationServer02">Input with danger</label>
+                            <input type="text" class="form-control border-danger" id="validationServer02" placeholder="Last name" value="Last Name" required>
+                            <div class="text-daborder-danger small mt-1">
+                                Sorry, that username's taken. Try another?
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary btn-pill mr-2" type="submit">Submit</button>
+                        <button class="btn btn-danger btn-pill" data-dismiss="modal">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_new_group" tabindex="-1" role="dialog" aria-labelledby="modal_new_group" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal_new_groupTitle">New group</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12 p-2">
+                                <form>
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationServer01">Input with success</label>
+                                            <input type="text" class="form-control border-success" id="validationServer01" placeholder="First name" required>
+                                            <div class="text-success small mt-1">
+                                                Looks good!
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationServer02">Input with info</label>
+                                            <input type="text" class="form-control border-info" id="validationServer02" placeholder="Last name" value="Last Name" required>
+                                            <div class="text-info small mt-1">
+                                                We'll never share your email with anyone else.
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <button class="btn btn-primary btn-pill mr-2" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">First</th>
+                                            <th scope="col">Last</th>
+                                            <th scope="col">Handle</th>
+                                            <th class="text-center">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">1</td>
+                                            <td>Lucia</td>
+                                            <td>Christ</td>
+                                            <td>@Lucia</td>
+                                            <th class="text-center">
+                                                <a href="#">
+                                                    <i class="mdi mdi-open-in-new"></i>
+                                                </a>
+                                                <a href="#">
+                                                    <i class="mdi mdi-close text-danger"></i>
+                                                </a>
+
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -115,10 +115,6 @@
               </a>
             </li>
 
-
-
-
-
             <li>
               <a class="sidenav-item-link" href="analytics.html">
                 <i class="mdi mdi-chart-line"></i>
@@ -135,26 +131,25 @@
                 <div class="sub-menu">
 
                   <li>
-                    <a class="sidenav-item-link" href="user-profile.html">
+                    <a class="sidenav-item-link" href="{{ route('fatura') }}">
                       <span class="nav-text">{{ __('language.Invoice') }}</span>
                     </a>
                   </li>
 
                   <li>
-                    <a class="sidenav-item-link" href="user-activities.html">
+                    <a class="sidenav-item-link" href="{{ route('proposta') }}">
                       <span class="nav-text">{{ __('language.Propossal') }}</span>
                     </a>
                   </li>
 
                   <li>
-                    <a class="sidenav-item-link" href="user-profile-settings.html">
+                    <a class="sidenav-item-link" href="{{ route('nota_credito') }}">
                       <span class="nav-text">{{ __('language.Credit_note') }}</span>
                     </a>
                   </li>
 
-
                   <li>
-                    <a class="sidenav-item-link" href="user-account-settings.html">
+                    <a class="sidenav-item-link" href="{{ route('item') }}">
                       <span class="nav-text">{{ __('language.Item') }}</span>
                     </a>
                   </li>
@@ -162,9 +157,6 @@
                 </div>
               </ul>
             </li>
-
-
-
 
             <li>
               <a class="sidenav-item-link" href="chat.html">
@@ -355,7 +347,7 @@
 
 
             <li>
-              <a class="sidenav-item-link" href="{{ route('produto') }}">
+              <a class="sidenav-item-link" href="{{ route('item') }}">
                 <i class="mdi mdi-airplane"></i>
                 <span class="nav-text">Getting Started</span>
               </a>

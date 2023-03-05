@@ -51,19 +51,61 @@ Route::prefix("/admin")->group(function () {
     Route::get('/', function () {
         return view('admin.home.index');
     })->name("admin");
-    Route::prefix("/produto")->group(function () {
+    Route::prefix("/fatura")->group(function () {
         Route::get('/', function () {
-            return view('admin.produtos.index');
-        })->name("produto");
+            return view('admin.fatura.index');
+        })->name("fatura");
         Route::get('/add', function () {
-            return view('admin.produtos.add');
-        })->name("produto.add");
+            return view('admin.fatura.add');
+        })->name("fatura.add");
         Route::get('/edit', function () {
-            return view('admin.produtos.edit');
-        })->name("produto.edit");
+            return view('admin.fatura.edit');
+        })->name("fatura.edit");
         Route::get('/store', function () {
-            return view('admin.produtos.store');
-        })->name("produto.store");
+            return view('admin.fatura.store');
+        })->name("fatura.store");
+    });
+    Route::prefix("/proposta")->group(function () {
+        Route::get('/', function () {
+            return view('admin.proposta.index');
+        })->name("proposta");
+        Route::get('/add', function () {
+            return view('admin.proposta.add');
+        })->name("proposta.add");
+        Route::get('/edit', function () {
+            return view('admin.proposta.edit');
+        })->name("proposta.edit");
+        Route::get('/store', function () {
+            return view('admin.proposta.store');
+        })->name("proposta.store");
+    });
+    Route::prefix("/notacredito")->group(function () {
+        Route::get('/', function () {
+            return view('admin.nota_credito.index');
+        })->name("nota_credito");
+        Route::get('/add', function () {
+            return view('admin.nota_credito.add');
+        })->name("nota_credito.add");
+        Route::get('/edit', function () {
+            return view('admin.nota_credito.edit');
+        })->name("nota_credito.edit");
+        Route::get('/store', function () {
+            return view('admin.nota_credito.store');
+        })->name("nota_credito.store");
+    });
+    Route::prefix("/item")->group(function () {
+        Route::get('/', function () {
+            return view('admin.item.index');
+        })->name("item");
+        Route::get('/add', function () {
+            return view('admin.item.add');
+        })->name("item.add");
+        Route::get('/edit', function () {
+            return view('admin.item.edit');
+        })->name("item.edit");
+        Route::get('/store', function () {
+            return view('admin.item.store');
+        })->name("item.store");
     });
     Route::prefix("/categoria")->group(function () {
         Route::get('/', function () {

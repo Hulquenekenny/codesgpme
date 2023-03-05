@@ -1,4 +1,4 @@
-@extends('admin.layout.sneat')
+@extends('admin.layout.mono')
 
 @section('content')
 
