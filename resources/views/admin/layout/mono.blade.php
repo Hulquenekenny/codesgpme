@@ -768,7 +768,11 @@
                   </li>
 
                   <li class="dropdown-footer">
-                    <a class="dropdown-link-item" href="{{ route('admin') }}"> <i class="mdi mdi-logout"></i> Log Out </a>
+                    
+                    <form id="logout" method="post" action="{{ route('login.logout') }}">
+                        @csrf
+                        <input type="submit" form="logout" class="dropdown-link-item" value="sair">  <i class="mdi mdi-logout"></i> Log out
+                    </form>
                   </li>
                 </ul>
               </li>

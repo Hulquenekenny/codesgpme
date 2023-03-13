@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -85,11 +86,42 @@ class UserController extends Controller
     public function login(Request $request)
     {
 
-        $input = $request->validate([
+        
+       /* $input = $request->validate([
             'email' => 'required|email',
             'password' => 'required|string'
         ]);
-        dd($input);
+        
+
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return response()->json(['success' => true]);
+            
+        }
+        return response()->json(['success' => false], 401);
+        dd($input);*/
+        $credentials = $request->only('email', 'password');
+
+        
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();           
+            return redirect()->intended('/admin');
+        }
+
+        return back()->withErrors([
+            'email' => 'As credenciais informadas não correspondem aos nossos registros.',
+        ]);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
     public function recuperar_senha(Request $request)
     {

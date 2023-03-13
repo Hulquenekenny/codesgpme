@@ -26,11 +26,13 @@ Route::get('lang/change', [LangController::class, 'lang_change'])->name('lang.ch
 Route::get('/login', function () {
     return view('login.index');
 })->name("login");
+
 Route::get('/login/recuperar_senha', function () {
     return view('login.recuperar_senha');
 })->name("login.recuperar_senha");
 
 Route::post('/login', [UserController::class, 'login'])->name("login.login");
+Route::post('/logout', [UserController::class, 'logout'])->name("login.logout");
 Route::post('/login/recuperar_senha', [UserController::class, 'recuperar_senha'])->name("login.recuperar_senha");
 
 Route::prefix("/")->group(function () {
@@ -46,7 +48,7 @@ Route::prefix("/")->group(function () {
 });
 
 
-Route::prefix("/admin")->group(function () {
+Route::middleware('auth')->prefix("/admin")->group(function () {
 
     Route::get('/', function () {
         return view('admin.home.index');

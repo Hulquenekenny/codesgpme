@@ -15,6 +15,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Mono - Responsive Admin & Dashboard Template</title>
 
@@ -28,6 +29,7 @@
 
     <!-- MONO CSS -->
     <link id="main-css-href" rel="stylesheet" href="{{ asset('assets/mono/css/style.css') }}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 
 
@@ -65,15 +67,26 @@
             <div class="card-body px-5 pb-5 pt-0">
 
               <h4 class="text-dark mb-6 text-center">Sign in for free</h4>
+              @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-              <form action="/index.html">
+
+              <form id="login-form" method="post" action="{{route('login.login')}}">
+                 @csrf 
                 <div class="row">
                   <div class="form-group col-md-12 mb-4">
-                    <input type="email" class="form-control input-lg" id="email" aria-describedby="emailHelp"
+                    <input type="email" class="form-control input-lg" id="email" name="email"  aria-describedby="emailHelp"
                       placeholder="email">
                   </div>
                   <div class="form-group col-md-12 ">
-                    <input type="password" class="form-control input-lg" id="password" placeholder="Password">
+                    <input type="password" class="form-control input-lg" id="password" name="password" placeholder="Password">
                   </div>
                   <div class="col-md-12">
 
@@ -106,3 +119,90 @@
 </body>
 
 </html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<!--
+<script>
+   
+   $('#login-form').submit(function (event){
+
+        event.preventDefault();
+        var form = $(this);
+        var email = $('#email').val();
+        var password = $('#password').val();
+        var csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+        $.ajax({
+
+              type: 'POST',
+              url: form.attr('action'),
+              data: {
+                     email: email,
+                     password: password,
+                     _token: csrf_token
+
+              },
+              datatype: 'json',
+              success: function(response) {
+
+                    if(response.success)
+                    {
+                        window.location.href = '/admin  ';
+                    }
+                    else
+                    {
+                      $('#error-message').html('Credenciais invalidas');
+                    }
+              },
+              error: function()
+              {
+                $('#error-message').html('erro');
+              }
+        });
+   })
+</script>
+
+  
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <script>
+    const form = document.getElementById('login-form');
+
+form.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    //console.log(token);
+
+  fetch('/login', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': token // adiciona o token CSRF ao cabeçalho da solicitação
+    },
+    body: JSON.stringify({ email, password })
+  })
+  .then(response => {
+    if(response.ok) {
+      return response.json(); // retorna o objeto JSON se a resposta for bem-sucedida
+    } else {
+      //throw new Error('Erro ao fazer login');
+    }
+  })
+  .then(data => {
+    // armazena o token JWT no navegador aqui
+    //localStorage.setItem('token', data.token);
+
+    // redireciona para a página de perfil do usuário
+    window.location.href = '/admin';
+  })
+  .catch(error => console.error(error));
+});
+
+  </script>
+
+  -->
